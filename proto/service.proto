@@ -1,0 +1,40 @@
+syntax = "proto3";
+package proto;
+
+option go_package= "/todo";
+
+service Todo{
+rpc AddTask (Task) returns (Response);
+rpc GetTask (Args) returns (Response);
+
+rpc DeleteTask (Args) returns (List);
+rpc UpdateTask (Item) returns (Response);
+rpc ListTask (List) returns (ListResponse);
+rpc MarkTask (Args) returns (Response);
+
+}
+
+message Task{
+    int64 id =1;
+string task = 2;
+bool status = 3;
+}
+
+message Args{
+    int64 id = 1;
+    }
+message Item{
+    Task item  = 1;
+}
+message List{
+    string message = 1;
+}
+
+message ListResponse{
+    repeated Task items = 1;
+}
+message Response{
+    int64 id = 1;
+    string task = 2;
+    int64 status = 3;
+}
